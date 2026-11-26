@@ -1,0 +1,94 @@
+﻿Bérszámfejtés
+Nyisd meg a kapott PayrollManager konzolos projektet (ha nem kaptál, hozz létre egyet ezen a néven).
+A részek egymásra épülnek, minden osztály és interfész külön fájlba kerül. Leadás: a projektmappát
+tömörítsd zip fájlba a saját neveddel (pl. KissAnna.zip), a bin és obj mappát előtte töröld, majd töltsd
+fel a Classroomba.
+I. rész: Az Employee ősosztály (12 pont)
+1. feladat: Az osztály váza (5 pont)
+• Hozd létre az Employee.cs fájlt, benne a publikus, abstract Employee osztályt
+• Hozz létre 3 privát változót: name (string), baseSalary (int), paid (bool)
+• Hozz létre 3 publikus property-t: Name, BaseSalary, Paid. A get blokk adja vissza a privát
+megfelelőt, a set blokk a privát változónak állítja be az értéket
+2. feladat: Konstruktor (2 pont)
+• Készíts konstruktort, amely paraméterként a nevet és az alapbért kapja, és beállítja a megfelelő
+privát változókat
+• A paid kezdőértéke false legyen
+3. feladat: Járulék és költség (2 pont)
+• Hozd létre a protected AddContribution(int salary) metódust: adja vissza a bért 13%-kal
+megnövelve (salary + salary * 13 / 100)
+• Hozd létre a public abstract int MonthlyCost() metódust (törzs nélkül). A leszármazott
+osztályokban ez adja vissza a havi költséget, mindig járulékkal együtt: a járulékot a dolgozó saját
+pótlékai után kell hozzáadni
+4. feladat: Leírás (3 pont)
+• Készíts egy public virtual string Describe() metódust az Employee osztályba
+• A visszaadott szöveg formája: Tóth Bence, 339000 Ft/hó, nincs kifizetve
+• Az összeg a MonthlyCost() eredménye, ez már tartalmazza a járulékot, itt ne add hozzá újra. Ha a
+Paid igaz, a szöveg vége kifizetve, egyébként nincs kifizetve
+II. rész: Munkavállalók (15 pont)
+5. feladat: Gyakornok (3 pont)
+• Hozd létre az Intern.cs fájlt, benne az Employee-ből származó Intern osztályt
+• Készíts konstruktort, amely a nevet és az alapbért kapja, és base(...) hívással továbbadja
+• Írd felül a MonthlyCost() metódust: az alapbért add át az AddContribution metódusnak, és
+annak eredményét add vissza
+6. feladat: Teljes munkaidős dolgozó (5 pont)
+• Hozd létre a FullTimeEmployee.cs fájlt, benne az Employee-ből származó FullTimeEmployee
+osztályt
+
+• Hozz létre 1 privát változót: hasNightShift (bool). Hozz létre 1 publikus property-t:
+HasNightShift. A get blokk adja vissza a privát megfelelőt, a set blokk a privát változónak állítja be
+az értéket
+• Készíts konstruktort, amely a nevet, az alapbért és azt kapja, hogy van-e éjszakai műszak. Az első
+kettőt base(...) hívással adja tovább
+• Írd felül a MonthlyCost() metódust: éjszakai műszaknál előbb add az alapbérhez a 40000 Ft-ot, és
+csak az így kapott összegre számold rá a járulékot
+7. feladat: Csapatvezető (7 pont)
+• Hozd létre a TeamLead.cs fájlt, benne az Employee-ből származó TeamLead osztályt
+• Hozz létre 1 privát változót: teamSize (int). Hozz létre 1 publikus property-t: TeamSize. A get
+blokk adja vissza a privát megfelelőt, a set blokk a privát változónak állítja be az értéket
+• Készíts konstruktort, amely a nevet, az alapbért és a csapat létszámát kapja, base(...) hívással
+• Írd felül a MonthlyCost() metódust: előbb add az alapbérhez a csapattagonkénti 25000 Ft-ot, és
+csak az így kapott összegre számold rá a járulékot
+• Írd felül a Describe() metódust: a base.Describe() eredménye után fűzd hozzá a csapat
+létszámát, pl. Szabó Éva, 1017000 Ft/hó, nincs kifizetve, 4 fős csapat
+III. rész: Prémium (8 pont)
+8. feladat: Az interfész (2 pont)
+• Hozd létre az IBonusEligible.cs fájlt, benne a publikus IBonusEligible interfészt
+• Az interfész egyetlen metódusa: int Bonus()
+9. feladat: Teljes munkaidős dolgozó prémiuma (3 pont)
+• A FullTimeEmployee osztály valósítsa meg az IBonusEligible interfészt
+• A prémium 50000 Ft, éjszakai műszaknál 70000 Ft
+10. feladat: Csapatvezető prémiuma (3 pont)
+• A TeamLead osztály valósítsa meg az IBonusEligible interfészt
+• A prémium csapattagonként 30000 Ft
+IV. rész: A bérszámfejtés (15 pont)
+11. feladat: A Payroll osztály váza (3 pont)
+• Hozd létre a Payroll.cs fájlt, benne a publikus Payroll osztályt
+• Hozz létre 2 privát változót: employees (List&lt;Employee&gt;) és bonusList
+(List&lt;IBonusEligible&gt;). A konstruktor mindkettőt üres listával töltse fel
+• Készíts egy AddEmployee(Employee employee) metódust, amely az employees listához adja a
+dolgozót
+• Készíts egy AddForBonus(IBonusEligible item) metódust, amely a bonusList listához adja az
+elemet
+12. feladat: Kifizetett összeg (3 pont)
+• Hozd létre a TotalPaidOut() metódust a Payroll osztályba
+
+• Adja vissza a kifizetett dolgozók MonthlyCost() értékeinek összegét int-ként. Ezek már
+tartalmazzák a járulékot, az összegre ne számolj újra járulékot
+13. feladat: Teljes prémium (2 pont)
+• Készíts egy TotalBonus() metódust a Payroll osztályba
+• Adja vissza a bonusList elemeinek prémiumát összeadva
+14. feladat: Kifizetés (4 pont)
+• Hozd létre a bool Pay(string name) metódust a Payroll osztályba
+• Keresd meg a megadott nevű dolgozót. Ha még nincs kifizetve, állítsd kifizetettre, és adj vissza
+true értéket
+• Ha nincs ilyen dolgozó, vagy már ki van fizetve, a visszatérési érték false
+15. feladat: Kipróbálás (3 pont)
+• A Program.cs Main metódusában hozz létre egy Payroll példányt és 4 dolgozót: Intern (Tóth
+Bence, 300000), FullTimeEmployee (Kiss Anna, 600000, éjszakai műszak nélkül),
+FullTimeEmployee (Nagy Péter, 600000, éjszakai műszakkal), TeamLead (Szabó Éva, 800000, 4 fős
+csapat)
+• Mind a négyet add hozzá az AddEmployee metódussal, a prémiumra jogosultakat (teljes
+munkaidősök, csapatvezető) az AddForBonus metódussal is
+• Fizesd ki Tóth Bencét és Szabó Évát, majd próbáld újra Tóth Bencét és Kovács Ádámot. Mind a négy
+eredményt írasd ki
+• Írasd ki a 4 dolgozó Describe() eredményét, a kifizetett összeget és a teljes prémiumot
